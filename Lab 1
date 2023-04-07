@@ -1,0 +1,88 @@
+package Lab1.Question1;
+
+import java.util.Scanner;
+
+public class Student {
+	private String studentName;
+	private char roomType;
+	private double roomRate;
+	
+	public Student()
+	{
+		System.out.println("\n\tWelcome to Hostel Fee Calculation Program");
+		System.out.println("\t --------------------------------------- ");
+		System.out.println("\t|   ROOM TYPE   |  RATE (per semester)  |");
+		System.out.println("\t --------------------------------------- ");
+		System.out.println("\t|\tA\t|\tRM 450.00 \t|");
+		System.out.println("\t|\tB\t|\tRM 400.00 \t|");
+		System.out.println("\t|\tC\t|\tRM 350.00 \t|");
+		System.out.println("\t --------------------------------------- ");
+		
+		
+		setDetails(studentName);
+		setRoom(roomType);
+		selectRoom();
+	}
+	
+	public Student(String studentName, char roomType)
+	{
+		this.studentName = studentName;
+		this.roomType = roomType;
+	}
+	
+	public void setDetails(String studentName)
+	{
+		System.out.print("\nPlease enter student name: ");
+		Scanner input= new Scanner(System.in);
+		studentName = input.nextLine();
+		this.studentName = studentName;
+	}
+	
+	public void setRoom(char roomType)
+	{
+		System.out.print("Please enter room type (A/B/C)  : ");
+		Scanner input = new Scanner(System.in);
+		roomType = input.next().charAt(0);
+		this.roomType = Character.toUpperCase(roomType);
+	}
+	
+	public void selectRoom()
+	{
+		switch(roomType)
+		{
+			case 'A': 
+				roomRate = 450.00;
+				break;
+			
+			case 'B':
+				roomRate = 400.00;
+				break;
+				
+			case 'C':
+				roomRate = 350.00;
+				break;
+				
+			default:
+				System.out.println("Invalid room type!");
+				break;
+		}
+	}
+	
+	public void displayDetails()
+	{
+		System.out.println("\nBelow is the report hostel fee.");
+		System.out.println("Student Name  \t\t : " + studentName);
+		System.out.println("Room Type   \t\t : " + roomType);
+		System.out.println("Room Rate for one year (two semester) : RM " + (roomRate*2));
+	}
+	
+	public static void main(String[] args)
+	{
+		Student s1 = new Student();
+		s1.displayDetails();
+		
+		Student s2 = new Student("Sophie", 'A');
+		s2.selectRoom();
+		s2.displayDetails();
+	}
+}
